@@ -1,6 +1,11 @@
 class ArticlesController < ApplicationController
-    
+    #@articleを定義
     before_action :set_article, only: [:edit,:update,:show,:destroy]
+    #ログインしてる時のみ有効
+    before_action :require_user, except: [:index, :show]
+    #ログインしてるユーザーと投稿のユーザーが一致した時のみ有効
+    before_action :require_same_user, only: [:edit, :update, :destroy]
+    
     
     def index
         @articles = Article.paginate(page: params[:page], per_page: 5)
@@ -56,4 +61,18 @@ class ArticlesController < ApplicationController
             params.require(:article).permit(:title, :description)
         end
     
+        def require_same_user
+            if current_user != @article.user
+                flash[:danger] = "You can only edit or delete your own articles"
+                redirect_to root_path
+            end
+        end
+    
 end
+
+
+
+
+
+
+
