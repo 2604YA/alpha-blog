@@ -2,7 +2,7 @@
 
 <div align="center">
     <% if logged_in? and current_user.admin? %>
-        <div class="row">
+        <div class="row categoryBadge">
             <span class="badge"><%= link_to "Edit Category Name", edit_category_path(@category) %></span>
         </div>
     <% end %>
