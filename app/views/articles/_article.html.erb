@@ -8,7 +8,10 @@
                 <div class="article-body">
                     <%= truncate(article.description, length: 100) %>
                     <div class="article-meta-details">
-                        <small>Created by: <%= article.user.username if article.user %><br>
+                        <small>Created by:
+                            <% if article.user %>
+                            <%= link_to article.user.username, user_path(article.user) %>
+                            <% end %><br>
                                 Created at: <%= article.created_at.strftime("%Y-%m-%d %H:%M") %><br>
                                Last Updated at: <%= article.updated_at.strftime("%Y-%m-%d %H:%M") %>
                         </small>
@@ -29,3 +32,4 @@
         </div>
     </div>
 <% end %>
+
