@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190605145232) do
+ActiveRecord::Schema.define(version: 20190607101714) do
 
   create_table "article_categories", force: :cascade do |t|
     t.integer "article_id"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20190605145232) do
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.boolean "admin", default: false
-    t.string "image_name", default: "default_image.png"
+    t.string "image_name"
   end
 
 end
