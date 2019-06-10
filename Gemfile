@@ -65,3 +65,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'rails-controller-testing'
 
 gem 'carrierwave'
+
+gem 'devise'
+
+gem 'acts_as_votable', '~> 0.12.0'

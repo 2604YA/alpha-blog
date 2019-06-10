@@ -4,7 +4,12 @@ Rails.application.routes.draw do
     root 'pages#home'
     get 'about', to: 'pages#about'
     
-    resources :articles
+    resources :articles do
+        member do
+            put 'like', to: 'articles#upvote'
+            put 'unlike', to: 'articles#downvote'
+        end
+    end
     
     get 'signup', to: 'users#new'
     

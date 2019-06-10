@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
     #@articleを定義
-    before_action :set_article, only: [:edit,:update,:show,:destroy]
+    before_action :set_article, only: [:edit,:update,:show,:destroy, :upvote, :downvote]
     #ログインしてる時のみ有効
     before_action :require_user, except: [:index, :show]
     #ログインしてるユーザーと投稿のユーザーが一致した時のみ有効
@@ -45,11 +45,21 @@ class ArticlesController < ApplicationController
     end
     
     def destroy
-        
         @article.destroy
         flash[:danger] = "Article was successfully deleted"
         redirect_to articles_path
     end
+    
+    def upvote
+        @article.upvote_from current_user
+        redirect_to articles_path
+    end
+    
+    def downvote
+        @article.downvote_from current_user
+        redirect_to articles_path
+    end
+    
     
     private
     

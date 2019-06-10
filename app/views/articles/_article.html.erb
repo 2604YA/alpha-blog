@@ -10,6 +10,25 @@
                 </div>
                 <div class="article-body">
                     <%= truncate(article.description, length: 100) %>
+                    
+                    <div class="vote">
+                    
+                        <%= link_to like_article_path(article), class: 'like', method: :put do %>
+                            <button type="button" class="btn btn-info up" aria-label="Left Align">
+                                <span class="glyphicon glyphicon-thumbs-up glyphicon-align-center" aria-hidden="true"></span>
+                                <span class="badge"><%= article.get_upvotes.size %></span>
+                            </button>
+                        <% end %>
+
+                        <%= link_to unlike_article_path(article), class: 'like', method: :put do %>
+                            <button type="button" class="btn btn-info down" aria-label="Left Align">
+                                <span class="glyphicon glyphicon-thumbs-down glyphicon-align-center" aria-hidden="true"></span>
+                                <span class="badge"><%= article.get_downvotes.size %></span>
+                            </button>
+                        <% end %>
+
+                    </div>    
+                    
                     <div class="article-meta-details">
                         <small>Created by:
                             <% if article.user %>
